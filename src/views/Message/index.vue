@@ -83,10 +83,14 @@ export default {
 
     this.$refs.container.addEventListener("scroll", this.pageScroll);
   },
-  destroyed() {
+  beforeDestroy() {
     this.$Bus.$off("mainScroll", this.handleScroll);
     this.$refs.container.removeEventListener("scroll", this.pageScroll);
   },
+  // destroyed() {
+  //   this.$Bus.$off("mainScroll", this.handleScroll);
+  //   this.$refs.container.removeEventListener("scroll", this.pageScroll);
+  // },
 };
 </script>
 

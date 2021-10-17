@@ -4,7 +4,7 @@ import routes from './routes'
 Vue.use(Router)
 const router = new Router({
     routes,
-    mode: "history"
+    // mode: "history"
 })
 
 router.afterEach((to,from)=> {
