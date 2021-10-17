@@ -55,7 +55,7 @@
       :limit="routeInfo.limit"
       @pageChange="handlePageChange"
     />
-    <Empty v-if="!data.rows.length"/>
+    <Empty v-if="!data.rows.length && !isLoading"/>
   </div>
 </template>
 
@@ -67,7 +67,7 @@ import * as blogApi from "@/api/blog";
 import setMainScroll from "@/mixins/setMainScroll";
 import Empty from "@/components/Empty";
 export default {
-  mixins: [fetchData({}), setMainScroll("container")],
+  mixins: [fetchData({rows:[],total:0}), setMainScroll("container")],
   components: {
     Pager,
     Empty
@@ -77,7 +77,7 @@ export default {
       this.isLoading = true;
       //滚动高度 变成0
       this.$refs.container.scrollTop = 0;
-      this.data = {};
+      this.data = {rows:[],total:0};
       this.data = await this.fetchData();
       this.isLoading = false;
     },

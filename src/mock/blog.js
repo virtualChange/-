@@ -13,7 +13,7 @@ Mock.mock("/api/blogtype", "get", {
   ],
 });
 
-Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function(options) {
+Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function (options) {
   const query = qs.parse(options.url);
 
   return Mock.mock({
@@ -281,15 +281,20 @@ Mock.mock("/api/comment", "post", {
     content: "@cparagraph(1, 10)",
     createDate: Date.now(),
     "avatar|1": [
-      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-      "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+      avatar1,
+      avatar2,
+      avatar3,
+      avatar4,
     ],
   },
 });
 
-Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function(options) {
+
+import avatar1 from "@/assets/avatar1.jpg"
+import avatar2 from "@/assets/avatar2.jpg"
+import avatar3 from "@/assets/avatar3.jpg"
+import avatar4 from "@/assets/avatar4.jpg"
+Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function (options) {
   const query = qs.parse(options.url);
 
   return Mock.mock({
@@ -304,10 +309,10 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function(options) {
           content: "@cparagraph(1, 10)",
           createDate: Date.now(),
           "avatar|1": [
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-            "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+            avatar1,
+            avatar2,
+            avatar3,
+            avatar4,
           ],
         },
       ],

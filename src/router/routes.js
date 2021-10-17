@@ -31,8 +31,8 @@ const routes = [
         }
     },
     {
-        name: 'Category', path: '/blog/cate/:categoryId', component: getComp(() => import('@/views/Project')), meta: {
-            title: '项目&效果'
+        name: 'Category', path: '/blog/cate/:categoryId', component: getComp(() => import('@/views/Blog')), meta: {
+            title: '文章列表'
         }
     },
     {
