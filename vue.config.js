@@ -11,5 +11,6 @@ module.exports = {
     },
     configureWebpack: {
         plugins: [new BundleAnalyzerPlugin()]
-    }
+    },
+    publicPath: './',
 }
