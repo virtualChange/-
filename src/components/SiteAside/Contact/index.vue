@@ -1,4 +1,3 @@
-// 联系方式组件
 <template>
   <div class="contact-container">
     <a
@@ -24,7 +23,11 @@ export default {
   data() {
     return {
       items: [
-        { href: "", icon: "github", text: "123.com" },
+        {
+          href: "https://github.com/virtualChange",
+          icon: "github",
+          text: "github",
+        },
         {
           href: "mailto:1151630419@qq.com",
           icon: "mail",
@@ -54,10 +57,14 @@ export default {
 <style lang='less' scope>
 @import "~@/styles/global.less";
 @lineHeight: 30px;
-
 .contact-container {
   color: @gray;
-  font-size: 16px;
+  .icon-container {
+    font-size: 25px;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #fff !important;
+  }
   a {
     cursor: pointer;
     display: block;
@@ -76,7 +83,7 @@ export default {
       height: 150px;
     }
     span {
-      font-size: 16px;
+      font-size: 14px;
       margin-left: 6px;
     }
     .pop {

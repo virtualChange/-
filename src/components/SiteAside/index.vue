@@ -1,6 +1,8 @@
 <template>
   <div class="site-aside-container">
+    
     <Avatar :size="150" :src="data.avatar" v-show="data.avatar" />
+    <h2>我的个人空间</h2>
     <Menu v-show="data.avatar" />
     <Contact v-show="data.avatar" />
   </div>
@@ -39,5 +41,9 @@ export default {
   .menu-container {
     margin: 50px 0;
   }
+  h2 {
+    text-align: center;
+   color: @lightWords;
+}
 }
 </style>

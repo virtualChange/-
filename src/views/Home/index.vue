@@ -39,7 +39,10 @@
   user-select: none;
   width: 100%;
   height: 100%;
+  // margin: 100px auto;
   position: relative;
+  // border: 5px solid red;
+  z-index: 999;
   overflow: hidden;
   .carousel-container {
     height: 100%;
@@ -113,15 +116,15 @@
 <script>
 import Carousel from "./Carousel.vue";
 import Icon from "@/components/Icon";
-import  debounce  from "@/utils/debounce";
-import {mapState} from 'vuex'
+import debounce from "@/utils/debounce";
+import { mapState } from "vuex";
 export default {
   components: {
     Carousel,
     Icon,
   },
   created() {
-    this.$store.dispatch('banner/fetchData')
+    this.$store.dispatch("banner/fetchData");
   },
   data() {
     return {
@@ -131,7 +134,6 @@ export default {
     };
   },
   methods: {
-   
     toIndex(index) {
       this.index = index;
     },
@@ -157,13 +159,13 @@ export default {
     },
     handleResize: debounce(function () {
       this.clientHeight = this.$refs.container.clientHeight;
-    }, 200)
+    }, 200),
   },
   computed: {
     marginTop() {
       return -this.clientHeight * this.index + "px";
     },
-    ...mapState('banner',['isLoading','data'])
+    ...mapState("banner", ["isLoading", "data"]),
   },
   mounted() {
     this.clientHeight = this.$refs.container.clientHeight;

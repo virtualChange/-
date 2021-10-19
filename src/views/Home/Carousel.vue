@@ -18,6 +18,7 @@
 </template>
 
 <script>
+// import debounce from "@/utils/debounce";
 import ImageLoader from "@/components/ImageLoader";
 export default {
   props: ["carousel"],
@@ -37,6 +38,7 @@ export default {
   computed: {
     //得到图片坐标
     imagePosition() {
+      console.log(123);
       if (!this.innerSize || !this.containerSize) {
         return;
       }
@@ -84,6 +86,7 @@ export default {
       this.$refs.desc.style.transition = "2s 1s";
       this.$refs.desc.style.width = this.descWidth + "px";
     },
+    //窗口改变重新计算容器尺寸
     setSize() {
       this.containerSize = {
         width: this.$refs.container.clientWidth,
@@ -95,15 +98,44 @@ export default {
         height: this.$refs.image.clientHeight,
       };
     },
-    handleMouseMove(e) {
-      const rect = this.$refs.container.getBoundingClientRect();
-      this.mouseX = e.clientX - rect.left;
-      this.mouseY = e.clientY - rect.top;
+    // handleMouseMove(e) {
+    //   const rect = this.$refs.container.getBoundingClientRect();
+    //   this.mouseX = e.clientX - rect.left;
+    //   this.mouseY = e.clientY - rect.top;
+    // },
+    throttle(fn, delay = 100) {
+      let before = +new Date();
+      let _this = this;
+      return function (...args) {
+        let after = +new Date();
+        if (after - before > delay) {
+          before = +new Date();
+          fn.apply(_this, args);
+        }
+      };
     },
+    // handleMouseMove: ()=> {
+    //   return this.test() //不能读取test,这个方法每次鼠标移动都会返回一个新的函数,
+    // },
+    // handleMouseMove: this.debounceMouserMove,
+    // debounceMouserMove() {
+    //   return this.debounce(()=>{
+    //     log(123)
+    //   })
+    // },
+
+    //鼠标离开后让图片居中
     handleMouseLeave() {
       this.mouseX = this.center.x;
       this.mouseY = this.center.y;
     },
+  },
+  created() {
+    this.handleMouseMove = this.throttle((e) => {
+      const rect = this.$refs.container.getBoundingClientRect();
+        this.mouseX = e.clientX - rect.left;
+        this.mouseY = e.clientY - rect.top;
+    },50);
   },
 };
 </script>
@@ -117,6 +149,9 @@ export default {
   color: #fff;
   position: relative;
   overflow: hidden;
+  .image-loader-container {
+    // transition: 0.3s;
+  }
 }
 .carousel-img {
   width: 110%;
@@ -124,7 +159,6 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  transition: 0.3s;
 }
 
 .title,
